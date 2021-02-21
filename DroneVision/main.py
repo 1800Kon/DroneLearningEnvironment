@@ -6,7 +6,7 @@ capture = cv2.VideoCapture(0)
 # Width and height of the blob target
 whT = 320
 minConfidence = 0.5
-
+nms_threshold = 0.3
 # List which stores all the objects you can recognize
 classesFile = 'coco.names'
 classNames = []
@@ -23,6 +23,7 @@ net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
 
 def findObject(outputsValue, imgValue):
+    global classId
     hT, wT, cT = imgValue.shape
     bbox = []
     classIds = []
@@ -40,6 +41,14 @@ def findObject(outputsValue, imgValue):
                 classIds.append(classId)
                 confidence.append(float(conf))
     print(len(bbox))
+    indices = cv2.dnn.NMSBoxes(bbox, confidence, minConfidence, nms_threshold)
+    for i in indices:
+        i = i[0]
+        box = bbox[i]
+        x, y, w, h = box[0], box[1], box[2], box[3]
+        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), 2)
+        cv2.putText(img, f'{classNames[classIds[i]].upper()} {int(confidence[i] * 100)}%', (x, y - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 255), 1)
 
 
 # Loop to show the camera feed
