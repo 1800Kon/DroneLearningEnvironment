@@ -1,2 +1,2 @@
 # DroneLearningEnvironment
-Tello learning environment repo
+Tello learning environment repo.
