@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
-
-# The camera to use
-capture = cv2.VideoCapture(0)
+from djitellopy import tello
 
 # Variables
 whT = 320
@@ -12,7 +10,7 @@ modelConfiguration = 'yolov3-320.cfg'
 modelWeights = 'yolov3.weights'
 classesFile = 'coco.names'
 classNames = []
-
+drone = tello.Tello()
 with open(classesFile, 'rt') as f:
     classNames = f.read().rstrip('\n').split('\n')
 
@@ -20,6 +18,13 @@ net = cv2.dnn.readNet(modelConfiguration, modelWeights)
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
+# Connect the drone to the script
+drone.connect()
+print(drone.get_battery())
+
+# The camera to use
+drone.streamon()
+capture = drone.get_frame_read()
 
 # Finds objects in the image
 def findObject(outputsValue, imgValue):
