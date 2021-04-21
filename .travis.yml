@@ -1,4 +1,16 @@
+# blocklist
+branches:
+  except:
+    - developer
+
+# safelist
+branches:
+  only:
+  - master
+
+os: linux
 language: python
 python:
-  - 3.9
-script: test.py
+  - '3.9'
+script: 
+  - python test.py
