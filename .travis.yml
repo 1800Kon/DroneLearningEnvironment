@@ -1,16 +1,5 @@
-# blocklist
-branches:
-  except:
-    - developer
-
-# safelist
-branches:
-  only:
-  - master
-
-os: windows
 language: python
 python:
-  - '3.9'
+  - "3.9"
 script: 
   - python test.py
