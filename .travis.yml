@@ -1,16 +1,20 @@
 # blocklist
 branches:
   except:
-    - developer
+    - developer #What branches not to build 
 
 # safelist
 branches:
   only:
-  - master
+  - master #The branch needs to be build always
 
-os: linux
-language: python
+os: linux # Virtual environment 
+
+language: python # what language is going to be used when testing
+
+install: pip install -e # What to install before the installation.
+
 python:
-  - '3.9'
+  - '3.9' #what python version is going to be used in the virtual env. 
 script: 
-  - python test.py
+  - Solutions/test.py #what script should be tested and where to find it (Where to find it may not work still or can be incorrect).
