@@ -1,7 +1,7 @@
 language: python
 
 python: 
-  - "3.6"
+  - "3.6" #latest version in travis CI
 
 install: 
  - pip --version
@@ -17,7 +17,14 @@ branches:
 # safelist
 branches: 
   only:
-  - master
+  - master #what branch to build
+
+after_success:
+ #create docker image from a container
+
+after_failure:
+  #If failed we can send an email to the person which pushed an email saying the build failed. 
+
 
 
   #What we have found, is that when testing the software, we test the unit testing no the script itself
