@@ -1,20 +1,25 @@
+language: python
+
+python: 
+  - "3.6"
+
+install: 
+ - pip --version
+ - pip install requirements.txt #dependencies need to be here. in the requirements.txt 
+
+ script: pytest
+
 # blocklist
 branches:
   except:
     - developer #What branches not to build 
 
 # safelist
-branches:
+branches: 
   only:
-  - master #The branch needs to be build always
+  - master
 
-os: linux # Virtual environment 
 
-language: python # what language is going to be used when testing
-
-install: pip install -e # What to install before the installation.
-
-python:
-  - '3.9' #what python version is going to be used in the virtual env. 
-script: 
-  - Solutions/test.py #what script should be tested and where to find it (Where to find it may not work still or can be incorrect).
+  #What we have found, is that when testing the software, we test the unit testing no the script itself
+  #This means that we need to make test for the different challenges. We can use either pytest or a different one. 
+  #We need to make sure we understand this and how to do it correctly. more unit testing :D
