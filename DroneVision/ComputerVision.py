@@ -1,16 +1,19 @@
-import cv2
 import numpy as np
 from djitellopy import tello
+import cv2
 
 # Variables
 whT = 320
+width = 400
+height = 400
+debug_enabled = 0
+counter = 0
 minConfidence = 0.5
 nms_threshold = 0.3
 modelConfiguration = 'yolov3-320.cfg'
 modelWeights = 'yolov3.weights'
 classesFile = 'coco.names'
 classNames = []
-drone = tello.Tello()
 with open(classesFile, 'rt') as f:
     classNames = f.read().rstrip('\n').split('\n')
 
@@ -18,60 +21,25 @@ net = cv2.dnn.readNet(modelConfiguration, modelWeights)
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
-# Connect the drone to the script
+# Which camera to use for the image recognition
+capture = cv2.VideoCapture(0)
+
+drone = tello.Tello()
 drone.connect()
+drone.streamon()
 print(drone.get_battery())
 
-# The camera to use
-drone.streamon()
-capture = drone.get_frame_read()
-
-# Finds objects in the image
-def findObject(outputsValue, imgValue):
-    hT, wT, cT = imgValue.shape
-    bbox = []
-    classIds = []
-    confidence = []
-
-    # Loop that prints the boxes in the image
-    for output in outputsValue:
-        for detection in output:
-            scores = detection[5:]
-            classId = np.argmax(scores)
-            conf = scores[classId]
-            if conf > minConfidence:
-                w, h = int(detection[2] * wT), int(detection[3] * hT)
-                x, y = int((detection[0] * wT) - w / 2), int((detection[1] * hT) - h / 2)
-                bbox.append([x, y, w, h])
-                classIds.append(classId)
-                confidence.append(float(conf))
-
-    indices = cv2.dnn.NMSBoxes(bbox, confidence, minConfidence, nms_threshold)
-
-    # Loop that prints the boxes in the image
-    for i in indices:
-        i = i[0]
-        box = bbox[i]
-        x, y, w, h = box[0], box[1], box[2], box[3]
-        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), 2)
-        cv2.putText(img, f'{classNames[classIds[i]].upper()} {int(confidence[i] * 100)}%', (x, y - 10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 255), 1)
-
-
-# Show camera feed
 while True:
-    success, img = capture.read()
-    # The DNN requires blob types to read camera output
-    blob = cv2.dnn.blobFromImage(img, 1 / 255, (whT, whT), [0, 0, 0], 1, crop=False)
-    net.setInput(blob)
+    if counter == 1:
+        drone.takeoff()
+        counter = 1
 
-    layerNames = net.getLayerNames()
-    outputNames = [layerNames[i[0] - 1] for i in net.getUnconnectedOutLayers()]
-    outputs = net.forward(outputNames)
+    frame_read = drone.get_frame_read()
+    frame = frame_read.frame
+    img = cv2.resize(frame, (width, height))
+        
+    cv2.imshow("Drone", img)
 
-    # Run the image detection
-    findObject(outputs, img)
-
-    # Show the camera image
-    cv2.imshow("Image", img)
-    cv2.waitKey(1)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        drone.land()
+        break
