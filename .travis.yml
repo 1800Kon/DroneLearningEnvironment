@@ -16,3 +16,14 @@
   #This means that we need to make test for the different challenges. We can use either pytest or a different one.
   #We need to make sure we understand this and how to do it correctly. more unit testing :D
 
+language: python
+python:
+  - "3.8"
+
+cache: pip
+install:
+  - "pip install -r requirements.txt"
+  - "pip install -e ."
+
+script:
+  - python pytest

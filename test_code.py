@@ -1,8 +1,7 @@
 import pytest
 
-from Index import isHelloCorrect
+from Challenge1 import challenge1
 
 
 def test_function():
-    word = 'Hello World'
-    assert (isHelloCorrect(word) == True)
+    assert (challenge1() == False)
