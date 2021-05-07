@@ -2,10 +2,12 @@ from djitellopy import tello
 
 from time import sleep
 
-def challenge1():
+
+def challenge2Test():
     me = tello.Tello()
 
     me.connect()
+
     if me.get_battery() < 30:
         return False
 
@@ -15,11 +17,8 @@ def challenge1():
 
     sleep(2)
 
-    me.send_rc_control(0, 50, 0, 0)
+    me.send_rc_control(0, 0, 0, 50)
 
     sleep(2)
 
     me.land()
-
-
-
