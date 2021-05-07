@@ -25,6 +25,6 @@ notifications:
   email:
     recipients:
       - pepe.loperena@student.nhlstenden.com
-      #- gerogi.dimitrov@student.nhlstenden.com
-    on_success: always # default: change
+      - georgi.dimitrov@student.nhlstenden.com
+    on_success: always # this should be changed as never or only on specific moments. for now it is left like this for testing purposes
     on_failure: always # default: always
