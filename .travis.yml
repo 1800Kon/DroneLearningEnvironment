@@ -1,32 +1,18 @@
-language: python
-
-python: 
-  - "3.6" #latest version in travis CI
-
-install: 
- - pip --version
- - pip install requirements.txt #dependencies need to be here. in the requirements.txt 
-
- script: pytest
-
-# blocklist
-branches:
-  except:
-    - developer #What branches not to build 
-
-# safelist
-branches: 
-  only:
-  - master #what branch to build
-
-after_success:
+#language: python
+#python:
+#  - "3.6" #latest version in travis CI
+#install:
+# - pip --version
+# - pip install requirements.txt #dependencies need to be here. in the requirements.txt
+# script: pytest
+#branches:
+#  only:
+#  - master #what branch to build
+#after_success:
  #create docker image from a container
-
-after_failure:
-  #If failed we can send an email to the person which pushed an email saying the build failed. 
-
-
-
+#after_failure:
+  #If failed we can send an email to the person which pushed an email saying the build failed.
   #What we have found, is that when testing the software, we test the unit testing no the script itself
-  #This means that we need to make test for the different challenges. We can use either pytest or a different one. 
+  #This means that we need to make test for the different challenges. We can use either pytest or a different one.
   #We need to make sure we understand this and how to do it correctly. more unit testing :D
+
