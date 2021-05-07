@@ -1,10 +1,3 @@
-#language: python
-#python:
-#  - "3.6" #latest version in travis CI
-#install:
-# - pip --version
-# - pip install requirements.txt #dependencies need to be here. in the requirements.txt
-# script: pytest
 #branches:
 #  only:
 #  - master #what branch to build
@@ -27,3 +20,11 @@ install:
 
 script:
   - pytest
+
+notifications:
+  email:
+    recipients:
+      - pepe.loperena@student.nhlstenden.com
+      #- gerogi.dimitrov@student.nhlstenden.com
+    on_success: always # default: change
+    on_failure: always # default: always
