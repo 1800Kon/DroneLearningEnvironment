@@ -4,4 +4,4 @@ from Challenges.Challenge2_test.Challenge2 import *
 
 
 def test_function():
-    assert (challenge2Test() == False)
+    assert (challenge2Test() == True)

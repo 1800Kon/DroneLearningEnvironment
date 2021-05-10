@@ -9,7 +9,7 @@ def challenge2Test():
     me.connect()
 
     if me.get_battery() < 30:
-        return False
+        return True
 
     me.takeoff()
 
