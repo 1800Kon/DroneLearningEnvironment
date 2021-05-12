@@ -12,6 +12,8 @@
 language: python
 python:
   - "3.9"
+services:
+  - docker
 
 cache: pip
 install:
@@ -28,3 +30,5 @@ notifications:
       - georgi.dimitrov@student.nhlstenden.com
     on_success: always # this should be changed as never or only on specific moments. for now it is left like this for testing purposes
     on_failure: always # default: always
+after_success:
+  - docker build -t docker-test .
