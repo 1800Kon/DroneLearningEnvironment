@@ -28,7 +28,7 @@ notifications:
     recipients:
       - pepe.loperena@student.nhlstenden.com
       - georgi.dimitrov@student.nhlstenden.com
-    on_success: always # this should be changed as never or only on specific moments. for now it is left like this for testing purposes
+    on_success: never # this should be changed as never or only on specific moments. for now it is left like this for testing purposes
     on_failure: always # default: always
 after_success:
   - docker build -t docker-test .
