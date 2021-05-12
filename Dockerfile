@@ -2,7 +2,7 @@
 #and what should be included.
 
 #We first need to add the image we want to use for our different docker images. In this case, pyhton 3.9.0
-FROM python:lastest
+FROM python:3
 
 COPY requirements.txt ./
 
