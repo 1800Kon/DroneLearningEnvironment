@@ -33,4 +33,4 @@ notifications:
 after_success:
   - docker build -t docker-test:lastest .
   - docker login -u pepeloperena -p Fuerte2019!
-  - docker push pepeloperena/dockertest:lastest
+  - docker push dockertest/docker-test:lastest
