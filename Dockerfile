@@ -15,6 +15,3 @@ EXPOSE 80
 
 #CMD to run the docker container
 CMD [ "python", "./Challenge1.py"]
-CMD ["docker tag docker-test:trial"]
-CMD ["docker login"]
-CMD ["docker push pepeloperena/dockertest:trial"]
