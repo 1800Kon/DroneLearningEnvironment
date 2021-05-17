@@ -32,5 +32,5 @@ notifications:
     on_failure: always # default: always
 after_success:
   - docker build -t docker-test:lastest .
-  - docker login pepeloperena
+  - docker login -u pepeloperena
   - docker push pepeloperena/dockertest:lastest
