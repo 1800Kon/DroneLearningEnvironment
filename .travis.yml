@@ -32,4 +32,4 @@ notifications:
     on_failure: always # default: always
 after_success:
   - docker build -t docker-test:lastest .
-  - docker push pepeloperena/dockertest:docker-test:lastest
+  - docker push pepeloperena/dockertest:lastest
