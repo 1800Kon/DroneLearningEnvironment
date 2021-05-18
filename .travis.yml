@@ -31,7 +31,6 @@ notifications:
     on_success: never # this should be changed as never or only on specific moments. for now it is left like this for testing purposes
     on_failure: always # default: always
 after_success:
-  - docker build -t docker-test:lastest .
+  - docker build -t pepeloperena/dockertest:latesttag .
   - docker login -u pepeloperena -p Fuerte2019!
-  - docker comit docker-test pepeloperena/dockertest:lastest
-  - docker push pepeloperena/dockertest:lastest
+  - docker push pepeloperena/dockertest

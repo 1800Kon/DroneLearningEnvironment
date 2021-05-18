@@ -1,6 +1,6 @@
 import pytest
 
-from Challenges.Challenge2_test.Challenge2 import *
+from DroneLearningEnvironment.Challenges.Challenge2_test.Challenge2 import challenge2Test
 
 
 def test_function():

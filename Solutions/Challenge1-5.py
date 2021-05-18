@@ -2,6 +2,7 @@ from djitellopy import tello
 
 from time import sleep
 
+
 def challenge1():
     me = tello.Tello()
 
@@ -21,6 +22,7 @@ def challenge1():
 
     me.land()
 
+
 def challenge2():
     me = tello.Tello()
 
@@ -37,6 +39,7 @@ def challenge2():
     sleep(2)
 
     me.land()
+
 
 def challenge3():
     me = tello.Tello()
@@ -56,6 +59,7 @@ def challenge3():
     sleep(2)
 
     me.land()
+
 
 def challenge4():
     me = tello.Tello()
@@ -112,6 +116,7 @@ def challenge4():
     me.send_rc_control()
 
     me.land()
+
 
 def challenge5():
     me.connect()
