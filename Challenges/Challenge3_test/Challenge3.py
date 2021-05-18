@@ -7,7 +7,8 @@ def challenge3Test():
 
     me.connect()
 
-    print(me.get_battery())
+    if me.get_battery() < 30:
+        return False
 
     me.takeoff()
 
