@@ -9,9 +9,9 @@ def test_function1():
     assert (challenge1Test() == False)
 
 
-def test_function2():
+'''def test_function2():
     assert (challenge2Test() == True)
 
 
 def test_function3():
-    assert (challenge3Test() == False)
+    assert (challenge3Test() == False) '''
