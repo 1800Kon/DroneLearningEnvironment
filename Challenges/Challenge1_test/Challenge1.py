@@ -21,3 +21,8 @@ def challenge1Test():
     sleep(2)
 
     me.land()
+
+
+print("hello world! This is a test to see if the docker container is going to make the code work")
+
+challenge1Test()

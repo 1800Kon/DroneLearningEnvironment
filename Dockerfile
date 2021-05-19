@@ -14,4 +14,5 @@ RUN apt-get update
 EXPOSE 80
 
 #CMD to run the docker container
-CMD [ "python", "Challenges/Challenge1_test/Challenge1.py"]
+CMD ["../Challenge1_test/Challenge1.py"]
+EXPOSE ["python3"]
