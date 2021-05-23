@@ -4,12 +4,11 @@
 #We first need to add the image we want to use for our different docker images. In this case, pyhton 3.9.0
 FROM python:3
 
+COPY requirements.txt ./
+
 RUN pip install --no-cache-dir -r requirements.txt
 #Upadate the image into the latest packages
 RUN apt-get update
-
-COPY requirements.txt ./
-
 
 #CMD to run the docker container
 CMD [ "python","DroneLearningEnvironment/Challenge1.py"]
