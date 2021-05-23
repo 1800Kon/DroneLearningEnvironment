@@ -10,8 +10,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 #Upadate the image into the latest packages
 RUN apt-get update
 
-#expose a port to run the docker container
-EXPOSE 80
-
 #CMD to run the docker container
 CMD ["../Challenges/Challenge1_test/Challenge1.py"]
