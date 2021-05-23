@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN apt-get update
 
 #CMD to run the docker container
-CMD ["../Challenges/Challenge1_test/Challenge1.py"]
+CMD ["../Challenge1.py"]
