@@ -8,7 +8,7 @@ def challenge1Test():
 
     me.connect()
     if me.get_battery() < 30:
-        return False
+        return "hello world! This is a test to see if the docker container is going to make the code work"
 
     me.takeoff()
 
@@ -22,7 +22,3 @@ def challenge1Test():
 
     me.land()
 
-
-print("hello world! This is a test to see if the docker container is going to make the code work")
-
-'challenge1Test()'

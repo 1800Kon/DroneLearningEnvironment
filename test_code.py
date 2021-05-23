@@ -6,7 +6,7 @@ from Challenges.Challenge3_test.Challenge3 import *
 
 
 def test_function1():
-    assert (challenge1Test() == False)
+    assert (challenge1Test() == "hello world! This is a test to see if the docker container is going to make the code work")
 
 
 '''def test_function2():
