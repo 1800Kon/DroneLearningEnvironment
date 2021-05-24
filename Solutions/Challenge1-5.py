@@ -51,7 +51,7 @@ def challenge3():
 
     sleep(2)
 
-    me.flip
+    me.flip(b)
 
     sleep(2)
 
@@ -66,22 +66,21 @@ def challenge4():
 
     me.takeoff()
 
-    me.send_rc_control(0, 0, 50, 0)
-    """up 50"""
     sleep(1)
 
     me.send_rc_control(0, 50, 0, 0)
-    """forward 25"""
+
     sleep(2)
 
     me.send_rc_control(50, 0, 0, 0)
+
     sleep(1)
 
     me.send_rc_control(0, -50, 0, 0)
+    
     sleep(2)
 
     me.send_rc_control(-50, 0, 0, 0)
-
     sleep(1)
 
     me.land()
