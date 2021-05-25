@@ -8,8 +8,7 @@ COPY tello.py .
 COPY requirements.txt ./
 COPY Challenge1.py .
 
-RUN pip install --no-cache-dir -r requirements.txt && apt-get update
 #Upadate the image into the latest packages
-
+RUN pip install --no-cache-dir -r requirements.txt && apt-get update && pip install djitellopy && pip install opencv-python
 #CMD to run the docker container
 CMD [ "python","Challenge1.py"]
