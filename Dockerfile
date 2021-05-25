@@ -9,8 +9,8 @@ COPY requirements.txt ./
 COPY Challenge1.py .
 
 #Upadate the image into the latest packages
-RUN apt-get update && apt-get install -y python3-opencv
-RUN pip install opencv-python
+RUN apt-get update
+RUN apt-get install ffmpeg libsm6 libxext6  -y
 #RUN pip install --no-cache-dir -r requirements.txt && apt-get update && pip install djitellopy && pip install opencv-python
 #CMD to run the docker container
 CMD [ "python","Challenge1.py"]
