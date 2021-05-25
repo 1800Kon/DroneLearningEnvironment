@@ -9,6 +9,7 @@ COPY requirements.txt ./
 COPY Challenge1.py .
 
 #Upadate the image into the latest packages
-RUN pip install --no-cache-dir -r requirements.txt && apt-get update && pip install djitellopy && pip install opencv-python
+RUN apt-get update && apt-get install -y \ djitellopy \ opencv-python
+#RUN pip install --no-cache-dir -r requirements.txt && apt-get update && pip install djitellopy && pip install opencv-python
 #CMD to run the docker container
 CMD [ "python","Challenge1.py"]
