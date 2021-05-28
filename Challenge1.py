@@ -4,16 +4,6 @@ from time import sleep
 
 me = tello.Tello()
 
-
-
-
-
-
-
-
-
-
-
 me.connect()
 print('test 1')
 me.takeoff()
