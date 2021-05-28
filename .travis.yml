@@ -22,7 +22,7 @@ install:
   - "pip install flake8 "
 
 script:
-  - flake8
+  - flake8 --ignore=E1, F403, F405, E501, E503, F811, W292, E302, F821, E231, E305
 
 notifications:
   email:
