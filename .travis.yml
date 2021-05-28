@@ -19,9 +19,10 @@ cache: pip
 install:
   - "pip install -r requirements.txt"
   - "pip install -e ."
+  - "pip install flake8 "
 
 script:
-  - pytest
+  - flake8
 
 notifications:
   email:
