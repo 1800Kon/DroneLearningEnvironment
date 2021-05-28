@@ -1,7 +1,7 @@
 import numpy as np
 from djitellopy import tello
 import cv2
-
+# flake8: noqa
 # Variables
 whT = 320
 width = 720

@@ -1,6 +1,6 @@
 from djitellopy import tello
 from time import sleep
-
+# flake8: noqa
 
 def challenge3Test():
     me = tello.Tello()
