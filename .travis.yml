@@ -32,7 +32,6 @@ notifications:
     on_success: never # this should be changed as never or only on specific moments. for now it is left like this for testing purposes
     on_failure: always # default: always
 after_success:
-  - docker buildx install
-  - docker buildx build --platform linux/arm/v7 -t pepeloperena/dockertest:testtag .
+  - docker build -t pepeloperena/dockertest:testtag .
   - docker login -u pepeloperena -p Fuerte2019!
   - docker push pepeloperena/dockertest:testtag
