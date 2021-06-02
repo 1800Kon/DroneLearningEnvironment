@@ -12,9 +12,6 @@
 language: python
 python:
   - "3.9"
-
-arch:
-  - arm64
 services:
   - docker
 
