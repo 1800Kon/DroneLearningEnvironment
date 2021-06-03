@@ -34,5 +34,4 @@ notifications:
 after_success:
   - docker build -t pepeloperena/dockertest:testtag .
   - docker login -u pepeloperena -p Fuerte2019!
-    #docker push pepeloperena/dockertest
-  - docker buildx build --platform linux/arm/v7 -t pepeloperena/dockertest:testtag --push .
+  - docker push pepeloperena/dockertest

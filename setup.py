@@ -1,3 +1,4 @@
+# flake8: noqa
 from distutils.core import setup
 from glob import glob
 from os.path import basename, splitext
