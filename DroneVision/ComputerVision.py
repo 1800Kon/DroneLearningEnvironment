@@ -1,13 +1,15 @@
+from time import sleep
+
 import numpy as np
 from djitellopy import tello
 import cv2
-# flake8: noqa
+
 # Variables
 whT = 320
 width = 720
 height = 720
-debug_enabled = True
-webcam_mode = True
+debug_enabled = False
+webcam_mode = False
 minConfidence = 0.5
 nms_threshold = 0.3
 modelConfiguration = 'yolov3-320.cfg'
@@ -40,15 +42,27 @@ net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
 # Find the coordinates of the object and check if it is centered
 def checkCenter(x, y, w, h):
-    global fullCenter
-    if (x + (w / 2)) < 250 or (x + (w / 2)) > 450:
+    global fullCenter, centerX, centerY
+    if (x + (w / 2)) < 250:
+        drone.rotate_counter_clockwise(100)
         centerX = False
-    else:
+    if (x + (w / 2)) > 450:
+        drone.rotate_clockwise(100)
+        centerX = False
+
+    if ((x + (w / 2)) < 450) and ((x + (w / 2)) > 250):
         centerX = True
-    if (y + (h / 2)) < 200 or (y + (h / 2)) > 300:
+
+    if (y + (h / 2)) < 200:
+        drone.move_up(20)
         centerY = False
-    else:
+    if (y + (h / 2)) > 300:
+        drone.move_down(20)
+        centerY = False
+
+    if ((y + (h / 2)) > 200) and ((y + (h / 2)) < 300):
         centerY = True
+
     if not centerX or not centerY:
         fullCenter = False
         print("Not centered")
@@ -107,9 +121,9 @@ def findObject(outputsValue, imgValue):
 if not webcam_mode:
     drone = tello.Tello()
     drone.connect()
+    drone.streamoff()
     drone.streamon()
     print(drone.get_battery())
-
     # Keep debug_enabled as true, otherwise the drone will just slam into a wall XD
     while True:
         if not debug_enabled:
@@ -118,28 +132,32 @@ if not webcam_mode:
                 takeoff = True
 
         frame_read = drone.get_frame_read()
-        frame = frame_read.frame
-        img = cv2.resize(frame, (width, height))
+        finalFrame = frame_read.frame
+        # Added try catch to ignore "ugly" frames
+        try:
+            img = cv2.resize(finalFrame, (width, height))
 
-        # The DNN requires blob types to read camera output
-        blob = cv2.dnn.blobFromImage(img, 1 / 255, (whT, whT), [0, 0, 0], 1, crop=False)
-        net.setInput(blob)
+            # The DNN requires blob types to read camera output
+            blob = cv2.dnn.blobFromImage(img, 1 / 255, (whT, whT), [0, 0, 0], 1, crop=False)
+            net.setInput(blob)
 
-        layerNames = net.getLayerNames()
-        outputNames = [layerNames[i[0] - 1] for i in net.getUnconnectedOutLayers()]
-        outputs = net.forward(outputNames)
+            layerNames = net.getLayerNames()
+            outputNames = [layerNames[i[0] - 1] for i in net.getUnconnectedOutLayers()]
+            outputs = net.forward(outputNames)
 
-        # Run the image detection
-        findObject(outputs, img)
+            # Run the image detection
+            findObject(outputs, img)
 
-        cv2.imshow("Drone", img)
+            cv2.imshow("Drone", img)
 
-        # Press Q to close the program and destroy all windows (Might or might not work idk honestly)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            if takeoff:
-                drone.land()
-            cv2.destroyAllWindows()
-            break
+            # Press Q to close the program and destroy all windows (Might or might not work idk honestly)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                if takeoff:
+                    drone.land()
+                cv2.destroyAllWindows()
+                break
+        except Exception as e:
+            e
 else:
     while True:
         success, img = capture.read()
