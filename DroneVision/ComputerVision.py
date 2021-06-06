@@ -1,8 +1,12 @@
+# flake8: noqa
+
 from time import sleep
 
 import numpy as np
 from djitellopy import tello
 import cv2
+
+
 
 # Variables
 whT = 320
