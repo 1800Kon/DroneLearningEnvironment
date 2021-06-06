@@ -48,7 +48,4 @@ notifications:
     on_failure: always # default: always
 after_success:
   - docker login -u pepeloperena -p Fuerte2019!
-  - docker buildx create --name mybuilder
-  - docker buildx use mybuilder
-  - docker buildx inspect --bootstrap
   - docker buildx build --platform linux/arm/v7 \-t pepeloperena/dockertest:testtag --push .
