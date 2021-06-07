@@ -23,6 +23,8 @@ before_install:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) edge"
   - sudo apt-get update
+  - sudo apt-get install ffmpeg libsm6 libxext6  -y
+  - sudo pip install djitellopy
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   - mkdir -vp ~/.docker/cli-plugins/
   - curl --silent -L "https://github.com/docker/buildx/releases/download/v0.5.1/buildx-v0.5.1.linux-amd64" > ~/.docker/cli-plugins/docker-buildx
@@ -49,6 +51,6 @@ notifications:
 after_success:
   - docker login -u pepeloperena -p Fuerte2019!
   - docker buildx create --name mybuilder
-  - docker buildx use mybuilder
+  - docker buildx use mybuilder.
   - docker buildx inspect --bootstrap
-  - docker buildx build --platform linux/arm/v7 \-t pepeloperena/dockertest:testtag --push .
+  - docker buildx build --platform linux/arm/v7 \-t pepeloperena/dockertest:testtag --push
