@@ -61,7 +61,6 @@ def challenge3():
     me.land()
 
 def challenge4():
-
     me = tello.Tello()
 
     me.connect()
@@ -70,21 +69,17 @@ def challenge4():
 
     me.takeoff()
 
-    sleep(1)
-
     me.send_rc_control(0, 50, 0, 0)
-
-    sleep(2)
+    """forward 25"""
+    sleep(3)
 
     me.send_rc_control(50, 0, 0, 0)
-
     sleep(1)
 
-    me.send_rc_control(0, -50, 0, 0)
+    me.send_rc_control(0, -40, 0, 0)
+    sleep(3)
 
-    sleep(2)
-
-    me.send_rc_control(-50, 0, 0, 0)
+    me.send_rc_control(-40, 0, 0, 0)
 
     sleep(1)
 
@@ -100,7 +95,7 @@ def challenge5():
 
     me.takeoff()
 
-    sleep(2)
+    sleep(1)
 
     me.flip_back()
 
@@ -129,6 +124,8 @@ def challenge6():
     print(me.get_battery())
 
     me.takeoff()
+
+    sleep(1)
 
     me.send_rc_control(0, 50, 0, 25)
 
