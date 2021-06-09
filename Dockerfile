@@ -11,9 +11,6 @@ COPY Challenge1.py .
 
 #Upadate the image into the latest packages
 RUN apt-get update
-RUN apt-get update \
-    && apt-get install -y curl \
-    && rm -rf /var/lib/apt/lists/*
 RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN pip install djitellopy
 #RUN pip install --no-cache-dir -r requirements.txt && apt-get update && pip install djitellopy && pip install opencv-python
