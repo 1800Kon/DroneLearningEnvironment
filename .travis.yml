@@ -1,55 +1,40 @@
-#branches:
-#  only:
-#  - master #what branch to build
-#after_success:
- #create docker image from a container
-#after_failure:
-  #If failed we can send an email to the person which pushed an email saying the build failed.
-  #What we have found, is that when testing the software, we test the unit testing no the script itself
-  #This means that we need to make test for the different challenges. We can use either pytest or a different one.
-  #We need to make sure we understand this and how to do it correctly. more unit testing :D
-
-language: python
-python:
-  - "3.9"
-services:
-  - docker
-before_install:
-  - set -e
-  # Configure environment so changes are picked up when the Docker daemon is restarted after upgrading
-  - echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
-  - export DOCKER_CLI_EXPERIMENTAL=enabled
-  - sudo rm -rf /var/lib/apt/lists/*
-  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) edge"
-  - sudo apt-get update
-  - sudo apt-get install -y dpkg
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
-  - mkdir -vp ~/.docker/cli-plugins/
-  - curl --silent -L "https://github.com/docker/buildx/releases/download/v0.5.1/buildx-v0.5.1.linux-amd64" > ~/.docker/cli-plugins/docker-buildx
-  - chmod a+x ~/.docker/cli-plugins/docker-buildx
-
-
-
-cache: pip
-install:
-  - "pip install -r requirements.txt"
-  - "pip install -e ."
-  - "pip install flake8 "
-
-script:
-  - flake8
-
-notifications:
-  email:
-    recipients:
-      - pepe.loperena@student.nhlstenden.com
-      - georgi.dimitrov@student.nhlstenden.com
-    on_success: never # this should be changed as never or only on specific moments. for now it is left like this for testing purposes
-    on_failure: never # default: always
-after_success:
-  - docker buildx create --name mybuilder
-  - docker buildx use mybuilder
-  - docker buildx inspect --bootstrap
- # - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-  - docker buildx build --platform linux/arm/v7 \-t pepeloperena/dockertest:testtag --push .
+{
+  "os": "linux",
+  "python": "3.9",
+  "language": "python",
+  "dist": "xenial",
+  "services": [
+      "docker"
+  ],
+  "before_install": [
+      "set -e",
+      "echo '{\"experimental\":true}' | sudo tee /etc/docker/daemon.json",
+      "export DOCKER_CLI_EXPERIMENTAL=enabled",
+      "sudo rm -rf /var/lib/apt/lists/*",
+      "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
+      "sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) edge\"",
+      "sudo apt-get update",
+      "sudo apt-get install -y dpkg",
+      "sudo apt-get -y -o Dpkg::Options::=\"--force-confnew\" install docker-ce",
+      "mkdir -vp ~/.docker/cli-plugins/",
+      "curl --silent -L \"https://github.com/docker/buildx/releases/download/v0.5.1/buildx-v0.5.1.linux-amd64\" > ~/.docker/cli-plugins/docker-buildx",
+      "chmod a+x ~/.docker/cli-plugins/docker-buildx"
+  ],
+  "cache": {
+    "pip": true
+  },
+  "install": [
+      "pip install -r requirements.txt",
+      "pip install -e .",
+      "pip install flake8 "
+  ],
+  "script": [
+      "flake8"
+  ],
+  "after_success": [
+      "docker buildx create --name mybuilder",
+      "docker buildx use mybuilder",
+      "docker buildx inspect --bootstrap",
+      "docker buildx build --platform linux/arm/v7 \\-t pepeloperena/dockertest:testtag --push ."
+  ]
+}
