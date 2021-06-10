@@ -52,8 +52,22 @@ After that type on top **from djitellopy import tello** to import the library.
 ### Connect to DJI Tello drone
 
 1. Turn on the drone with the button on the side. 
+
 2. Turn on wifi on your PC.
+
 3. Search for wifi name starts with **TELLO**.
+
+4. Type these inside your file to connect to the drone and receives its battery from PyCharm.
+
+   ```python
+   me = tello.Tello()
+   
+   me.connect()
+   
+   print(me.get_battery())
+   ```
+
+   
 
 You can start coding with the drone!
 
@@ -90,4 +104,96 @@ You can start coding with the drone!
 ### #Challenge 8
 
 **Description:** Make the drone take off, flip and land.
+
+## Misc. and hints
+
+Come to this section to further learn basics in Python and how to use the library.
+
+### **Python**
+
+**Python Functions**
+
+```python
+def my_function():
+  print("Hello from a function")
+```
+
+**Python Syntax**
+
+```python
+if 5 > 2:
+  print("Five is greater than two!")
+```
+
+**Python Comments**
+
+```python
+#This is a comment
+print("Hello, World!")
+```
+
+**Python Variables**
+
+```python
+x = 4       # x is of type int
+x = "Sally" # x is now of type str
+print(x)
+```
+
+```python
+x = str(3)    # x will be '3'
+y = int(3)    # y will be 3
+z = float(3)  # z will be 3.0
+```
+
+**Python Numbers**
+
+```python
+x = 1    # int
+y = 2.8  # float
+z = 1j   # complex
+```
+
+**Python If...Else**
+
+```python
+a = 33
+b = 200
+if b > a:
+  print("b is greater than a")
+```
+
+**Python While Loops**
+
+```python
+i = 1
+while i < 6:
+  print(i)
+  i += 1
+```
+
+**Python For Loops**
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+```
+
+### DJITelloPy Library
+
+To view the whole library and all of its functions by **CTRL + Left Mouse Click** on one of the functions.
+
+```python
+def challenge1():
+    me = tello.Tello()
+
+    me.connect()
+
+    print(me.get_battery())
+```
+
+For this example you can can **CTRL + Left Mouse Click** on `Tello()`, `connect()` or `get_battery()` and similarly for all functions you might use.
+
+# MORE WILL BE UPDATED
 
