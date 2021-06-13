@@ -1,19 +1,14 @@
 pipeline {
-    agent any
+    agent none
     stages {
         stage('Build') {
-            steps {
-                //
+            agent{
+                docker{
+                    image 'python:3'
+                }
             }
-        }
-        stage('Test') {
-            steps {
-                //
-            }
-        }
-        stage('Deploy') {
-            steps {
-                //
+            steps{
+                sh 'python -c Challenge1.py'
             }
         }
     }
