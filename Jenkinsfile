@@ -21,7 +21,9 @@ pipeline {
       }
     } 
     stage("Testing code"){
-      sh 'flake 8'
+      steps{
+        sh 'flake 8'
+      }
     }
   } 
 }
