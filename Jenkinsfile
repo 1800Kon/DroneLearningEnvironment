@@ -9,12 +9,15 @@
 
 pipeline {
   agent {
-    docker 'python:3.9'
+    docker{
+      image 'python:3.9'
+      args '-v /root/.m2:/root/.m2'
+    } 
   }
   stages {
     stage('Install dependencies') {
       steps {
-        sh 'pip install --user -r requirements.txt'
+        sh 'pip install -r requirements.txt'
       }
     }
   }
