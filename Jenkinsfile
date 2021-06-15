@@ -14,7 +14,6 @@ pipeline {
   stages {
     stage('Install dependencies') {
       steps {
-        sh 'pip install --upgrade pip'
         sh 'pip install -r requirements.txt'
       }
     }
