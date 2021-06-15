@@ -9,17 +9,13 @@
 
 pipeline {
   agent {
-    docker{
-         image 'python 3.9'
-         args '-v /root/.m2:/root/.m2'
-    }
+    docker 'python:3.9'
   }
   stages {
     stage('Install dependencies') {
-      steps{
-        sh 'pip install --upgrade pip'
+      steps {
         sh 'pip install -r requirements.txt'
-      } 
+      }
     }
   }
 }
