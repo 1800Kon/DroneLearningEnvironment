@@ -16,14 +16,10 @@ pipeline {
   }
   stages {
     stage('Install dependencies') {
-      steps {
+      steps{
         sh 'pip install --upgrade pip'
         sh 'pip install -r requirements.txt'
-      } failure {
-      echo 'Failed!'
-    } success {
-      echo 'Done!'
+      } 
     }
   }
-}
 }
