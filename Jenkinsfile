@@ -19,6 +19,9 @@ pipeline {
       steps {
         sh 'pip install -r requirements.txt'
       }
+    } 
+    stage("Testing code"){
+      sh 'flake 8'
     }
-  }
+  } 
 }
