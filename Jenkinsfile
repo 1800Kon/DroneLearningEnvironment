@@ -11,7 +11,7 @@ pipeline {
   agent {
     docker{
       image 'python:3.9'
-      args '-v /root/.m2:/root/.m2'
+      args '-v /root/.m2:/root/.m2' //this is to cache the docker image so that it is used around the pipeline
     } 
   }
   stages {
@@ -19,6 +19,10 @@ pipeline {
       steps {
         sh 'pip install -r requirements.txt'
         sh 'pip install flake8'
+      }
+    } stage ('Testing Students code'){
+      steps{
+        sh 'flake8'
       }
     } 
   } 
