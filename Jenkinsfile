@@ -26,9 +26,6 @@ pipeline {
       }
     }
     stage ('creating docker image'){
-      agent dockerfile {
-        sh 'Dockerfile'
-      }
       steps{
             sh '''
              docker build -t pepeloperena/dockertest:testtag .
@@ -38,14 +35,5 @@ pipeline {
            '''
       }
     }
-  }
-   post {
-      failure {
-        echo 'the build has failed.'
-        //send a message or email to explain to student that build has failed.
-      }
-      success{
-        echo 'All i do is win'
-      }
-    }  
+  }  
 }
