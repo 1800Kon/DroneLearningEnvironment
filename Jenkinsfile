@@ -22,7 +22,21 @@ pipeline {
     } 
      stage ('Testing Students code'){
       steps{
-        sh 'flake8 Challenge1.py'
+        sh 'flake8 Challenge/Challenges.py'
+      }
+    }
+    post {
+      failure {
+        echo 'the build has failed.'
+        //send a message or email to explain to student that build has failed.
+      }
+      success{
+        sh '''
+           - docker build -t pepeloperena/dockertest:testtag .
+           - docker pepeloperena/dockertest:testtag .
+           - docker login -u pepeloperena -p Fuerte2019!
+           - docker push pepeloperena/dockertest 
+           '''
       }
     } 
   } 
