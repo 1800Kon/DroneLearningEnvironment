@@ -26,9 +26,6 @@ pipeline {
       }
     }
     stage ('creating docker image'){
-      agent{
-        docker
-      }
       steps{
             sh '''
              docker build -t pepeloperena/dockertest:testtag .
