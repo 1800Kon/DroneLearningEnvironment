@@ -23,7 +23,7 @@ pipeline {
     } 
      stage ('Testing Students code'){
       steps{
-        sh 'flake8'
+        sh 'flake8 Challenge1.py'
       }
     } 
   } 
