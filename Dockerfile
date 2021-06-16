@@ -5,9 +5,9 @@
 
 FROM python:3
 
-COPY tello.py .
+COPY Tello_Library/tello.py .
 COPY requirements.txt ./
-COPY Challenge1.py .
+COPY Challenge/Challenges.py .
 
 #Upadate the image into the latest packages
 RUN apt-get update

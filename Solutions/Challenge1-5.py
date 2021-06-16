@@ -54,7 +54,7 @@ def challenge3():
 
     sleep(2)
 
-    me.flip(b)
+    me.flip()
 
     sleep(2)
 
