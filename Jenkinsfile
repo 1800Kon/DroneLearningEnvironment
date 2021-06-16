@@ -25,7 +25,8 @@ pipeline {
         sh 'flake8 Challenge/Challenges.py'
       }
     }
-    post {
+  }
+   post {
       failure {
         echo 'the build has failed.'
         //send a message or email to explain to student that build has failed.
@@ -38,6 +39,5 @@ pipeline {
            - docker push pepeloperena/dockertest 
            '''
       }
-    } 
-  } 
+    }  
 }
