@@ -33,10 +33,10 @@ pipeline {
       }
       success{
         sh '''
-           - docker build -t pepeloperena/dockertest:testtag .
-           - docker pepeloperena/dockertest:testtag .
-           - docker login -u pepeloperena -p Fuerte2019!
-           - docker push pepeloperena/dockertest 
+             docker build -t pepeloperena/dockertest:testtag .
+             docker pepeloperena/dockertest:testtag .
+             docker login -u pepeloperena -p Fuerte2019!
+             docker push pepeloperena/dockertest 
            '''
       }
     }  
