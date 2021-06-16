@@ -25,6 +25,19 @@ pipeline {
         sh 'flake8 Challenge/Challenges.py'
       }
     }
+    stage ('creating docker image'){
+      agent{
+        docker
+      }
+      steps{
+            sh '''
+             docker build -t pepeloperena/dockertest:testtag .
+             docker pepeloperena/dockertest:testtag .
+             docker login -u pepeloperena -p Fuerte2019!
+             docker push pepeloperena/dockertest 
+           '''
+      }
+    }
   }
    post {
       failure {
@@ -32,12 +45,7 @@ pipeline {
         //send a message or email to explain to student that build has failed.
       }
       success{
-        sh '''
-             docker build -t pepeloperena/dockertest:testtag .
-             docker pepeloperena/dockertest:testtag .
-             docker login -u pepeloperena -p Fuerte2019!
-             docker push pepeloperena/dockertest 
-           '''
+        echo 'All i do is win'
       }
     }  
 }
