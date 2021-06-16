@@ -18,7 +18,6 @@ pipeline {
     stage('Install dependencies') {
       steps {
         sh 'pip install -r requirements.txt'
-        sh 'pip install flake8'
       }
     } 
      stage ('Testing Students code'){
