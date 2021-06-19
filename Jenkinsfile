@@ -60,7 +60,7 @@ pipeline{
     }
     stage('Docker Build') {
       agent{
-        dockerfile true 
+        docker
       }
       steps{
         sh 'docker build -t Challenge/Challenges.py'
