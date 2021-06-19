@@ -7,6 +7,7 @@
     5) docker image goes into docker hub
 */
 
+/*
 pipeline {
   agent {
     docker{
@@ -36,4 +37,30 @@ pipeline {
       }
     }
   }  
+}
+*/
+
+pipeline{
+  agent none {
+    stages{
+      stage('installing python'){
+        agent{
+          docker{
+            image: 'python 3.9'
+            args '-v /root/.m2:/root/.m2'
+          }
+        }
+        steps {
+          sh 'pip install -r requirements.txt'
+        }
+      }
+      stage ('Docker build'){
+        agent any{
+          steps{
+            sh 'docker build -t Challenge/challenges.py:lastest'
+          }
+        }
+      }
+    }
+  }
 }
