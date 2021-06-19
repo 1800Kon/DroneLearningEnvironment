@@ -59,10 +59,14 @@ pipeline{
       }
     }
     stage('Docker Build') {
-      agent any
+      agent {dockerfile true}
       steps{
-        sh 'docker build -t Challenge/Challenges.py'
+        def testImage = docker.build("test-image", "./")
+
+        testImage.inside{
+          sh 'make test'
+        }
       } 
+    }
   }
- }
 }
