@@ -64,4 +64,5 @@ pipeline{
         sh 'docker build -t Challenge/Challenges.py:lastest .'
       }
   }
+ }
 }
