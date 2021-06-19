@@ -26,13 +26,12 @@ pipeline {
       }
     }
     stage ('Build docker image'){
-      agent any{
+      agent any
         steps{
           script{
             def myImage = docker.build("challenge-image", "Dockerfile")
           }
         }
-      }
     }
   }  
 }
