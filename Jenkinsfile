@@ -41,7 +41,7 @@ pipeline {
 */
 
 pipeline{
-  agent none {
+  agent none 
     stages{
       stage('installing python'){
         agent{
@@ -55,12 +55,10 @@ pipeline{
         }
       }
       stage ('Docker build'){
-        agent any{
+        agent any
           steps{
             sh 'docker build -t Challenge/challenges.py:lastest'
           }
-        }
       }
     }
-  }
 }
