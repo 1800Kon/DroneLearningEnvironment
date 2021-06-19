@@ -41,24 +41,27 @@ pipeline {
 */
 
 pipeline{
-  agent none 
-    stages{
-      stage('installing python'){
-        agent{
-          docker{
-            image: 'python 3.9'
-            args '-v /root/.m2:/root/.m2'
-          }
-        }
-        steps {
-          sh 'pip install -r requirements.txt'
-        }
+  agent{
+    docker{
+      image 'python:3.9'
+      args '-v /root/.m2:/root/.m2'
+    }
+  }
+  stages {
+    stage('Install dependencies') {
+      steps {
+        sh 'pip install -r requirements.txt'
       }
-      stage ('Docker build'){
-        agent any
-          steps{
-            sh 'docker build -t Challenge/challenges.py:lastest'
-          }
+    } 
+     stage ('Testing Students code'){
+      steps{
+        sh 'flake8 Challenge/Challenges.py'
       }
     }
+    stage('Docker Build') {
+      agent any
+      steps {
+        sh 'docker build -t Challenge/Challenges.py:lastest .'
+      }
+  }
 }
