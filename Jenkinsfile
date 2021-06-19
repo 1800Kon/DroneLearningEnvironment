@@ -59,10 +59,9 @@ pipeline{
       }
     }
     stage('Docker Build') {
-      agent any
-      steps {
-        sh 'docker build -t Challenge/Challenges.py:lastest .'
-      }
+      agent{
+        dockerfile true 
+      } 
   }
  }
 }
