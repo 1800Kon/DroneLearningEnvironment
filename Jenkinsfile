@@ -29,7 +29,8 @@ pipeline {
       agent any
         steps{
           script{
-            def myImage = docker.build("challenge-image", "Dockerfile")
+            def myImage = docker.build("challenge-image:latest")
+            myImage.push();
           }
         }
     }
