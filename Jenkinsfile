@@ -7,7 +7,6 @@
     5) docker image goes into docker hub
 */
 
-/*
 pipeline {
   agent {
     docker{
@@ -26,47 +25,14 @@ pipeline {
         sh 'flake8 Challenge/Challenges.py'
       }
     }
-    stage ('creating docker image'){
-      steps{
-            sh '''
-             docker build -t pepeloperena/dockertest:testtag .
-             docker pepeloperena/dockertest:testtag .
-             docker login -u pepeloperena -p Fuerte2019!
-             docker push pepeloperena/dockertest 
-           '''
+    stage ('Build docker image'){
+      agent any{
+        steps{
+          script{
+            def myImage = docker.build("challenge-image", "Dockerfile")
+          }
+        }
       }
     }
   }  
-}
-*/
-
-pipeline{
-  agent{
-    docker{
-      image 'python:3.9'
-      args '-v /root/.m2:/root/.m2'
-    }
-  }
-  stages {
-    stage('Install dependencies') {
-      steps {
-        sh 'pip install -r requirements.txt'
-      }
-    } 
-     stage ('Testing Students code'){
-      steps{
-        sh 'flake8 Challenge/Challenges.py'
-      }
-    }
-    stage('Docker Build') {
-      agent {dockerfile true}
-      steps{
-        def testImage = docker.build("test-image", "./")
-
-        testImage.inside{
-          sh 'make test'
-        }
-      } 
-    }
-  }
 }
