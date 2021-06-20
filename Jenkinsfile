@@ -7,7 +7,7 @@
     5) docker image goes into docker hub
 */
 
-pipeline {
+/*pipeline {
   agent {
     docker{
       image 'python:3.9'
@@ -35,4 +35,38 @@ pipeline {
         }
     }
   }  
+}*/
+
+pipeline{
+  agent none
+  stages{
+    stage('Initialize build'){
+      agent{
+      docker{
+        image 'python:3.9'
+        args '-v /root/.m2:/root/.m2' //cache the image.
+        }
+      }
+      steps{
+        sh 'pip install -r requirements.txt'
+        sh 'pip install flake8'
+      }
+    }
+  stage('Validation'){
+    agent any
+    steps{
+      sh 'flake8 Challenges/Challenge.py'
+    }
+  }
+  stage('Build and deploy'){
+    agent{
+      docker{
+        image 'docker'
+      }
+    }
+    steps{
+      sh 'docker version'
+    }
+  }
+ }
 }
