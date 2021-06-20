@@ -5,7 +5,7 @@
 
 FROM python:3
 
-#COPY Tello_Library/tello.py .
+COPY Tello_Library/tello.py .
 COPY requirements.txt ./
 COPY Challenge/Challenges.py .
 
@@ -13,7 +13,6 @@ COPY Challenge/Challenges.py .
 RUN apt-get update
 RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN pip install djitellopy
-RUN pip install tello.py
 #RUN pip install --no-cache-dir -r requirements.txt && apt-get update && pip install djitellopy && pip install opencv-python
 #CMD to run the docker container
 CMD [ "python","Challenges.py"]
