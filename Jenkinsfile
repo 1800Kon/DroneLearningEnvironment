@@ -39,6 +39,9 @@
 
 pipeline{
   agent none
+  environment{
+    DOCKERHUB_CREDENTIALS = credentials('pepeloperena-dockerhub')
+  }
   stages{
     stage('Initialize build'){
       agent{
@@ -70,7 +73,9 @@ pipeline{
       }
     }
     steps{
-      sh 'docker version'
+      sh 'docker build pepeloperena/dockertest:testtag .'
+      sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      sh 'docker push pepeloperena/dockertest:testtag'
     }
   }
  }
