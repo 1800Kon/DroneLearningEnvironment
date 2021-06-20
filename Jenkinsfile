@@ -53,7 +53,11 @@ pipeline{
       }
     }
   stage('Validation'){
-    agent any
+    agent{
+      docker{
+        image 'python:3.9'
+      }
+    }
     steps{
       sh 'flake8 Challenges/Challenge.py'
     }
