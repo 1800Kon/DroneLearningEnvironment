@@ -49,7 +49,6 @@ pipeline{
       }
       steps{
         sh 'pip install -r requirements.txt'
-        sh 'pip install flake8'
       }
     }
   stage('Validation'){
@@ -59,6 +58,7 @@ pipeline{
       }
     }
     steps{
+      sh 'pip install flake8'
       sh 'flake8 Challenges/Challenge.py'
     }
   }
