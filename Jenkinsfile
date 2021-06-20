@@ -73,7 +73,7 @@ pipeline{
       }
     }
     steps{
-      sh 'docker build -t pepeloperena/dockertest:testtag .'
+      sh 'docker build -t pepeloperena/dockertest:lastesttag .'
       sh 'docker login -u pepeloperena -p Fuerte2019!'
       sh 'docker push pepeloperena/dockertest:testtag'
     }
