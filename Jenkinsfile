@@ -59,7 +59,7 @@ pipeline{
     }
     steps{
       sh 'pip install flake8'
-      sh 'flake8 Challenges/Challenge.py'
+      sh 'flake8 Challenge/Challenges.py'
     }
   }
   stage('Build and deploy'){
