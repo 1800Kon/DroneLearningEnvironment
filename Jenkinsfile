@@ -77,16 +77,9 @@ pipeline{
     }
     steps{
     sh """
-
-    ENV DOCKER_BUILDKIT=1
-    ENV BUILDKIT_PROGRESS=plain
-    ENV DOCKER_CLI_EXPERIMENTAL=enabled
-
-    ARG BUILDX_URL=https://github.com/docker/buildx/releases/download/v0.4.2/buildx-v0.4.2.linux-amd64
-
-    RUN mkdir -p $HOME/.docker/cli-plugins && \
-    wget -O $HOME/.docker/cli-plugins/docker-buildx $BUILDX_URL && \
-    chmod a+x $HOME/.docker/cli-plugins/docker-buildx
+      docker buildx create --name mybuilder,
+      docker buildx use mybuilder,
+      docker buildx build --platform linux/arm/v7 \\-t pepeloperena/dockertest:testtag --push ."
     """
       //sh 'docker image rm pepeloperena/dockertest:latest'
       //sh'docker rmi --force 68486105c9ed'
