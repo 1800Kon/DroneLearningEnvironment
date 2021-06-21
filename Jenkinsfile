@@ -53,31 +53,33 @@ pipeline{
       steps{
         echo 'im passing'
         sh 'pip install -r requirements.txt'
+        sh 'pip install flake8'
+        sh 'flake8 Challenge/Challenges.py'
       }
     }
-  stage('Validation'){
+  /*stage('Validation'){
     agent{
       docker{
         image 'python:3.9'
       }
     }
     steps{
-      sh 'pip install flake8'
-      sh 'flake8 Challenge/Challenges.py'
+
     }
-  }
+  }*/
   stage('Build and deploy'){
     agent{
       docker{
         image 'docker'
         args '-u root:root -p 3000:3000 --privileged -v /var/run/docker.sock:/var/run/docker.sock'
+        args '-v /root/.m2:/root/.m2' //cache the image.
       }
     }
     steps{
-      sh'docker rmi --force 68486105c9ed'
-      sh 'docker build -t pepeloperena/dockertest:pepetag .'
+      //sh'docker rmi --force 68486105c9ed'
+      sh 'docker build -t pepeloperena/dockertest .'
       sh 'docker login -u pepeloperena -p Fuerte2019!'
-      sh 'docker push pepeloperena/dockertest:pepetag'
+      sh 'docker push pepeloperena/dockertest'
       sh 'docker images'
     }
   }
