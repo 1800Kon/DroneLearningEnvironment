@@ -77,6 +77,7 @@ pipeline{
     }
     steps{
     sh """
+        docker buildx install
       docker buildx create --name mybuilder,
       docker buildx use mybuilder,
       docker buildx inspect --bootstrap,
