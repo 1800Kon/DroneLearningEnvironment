@@ -52,7 +52,7 @@ pipeline{
       }
       steps{
         echo 'im passing'
-        //sh 'pip install -r requirements.txt'
+        sh 'pip install -r requirements.txt'
       }
     }
   stage('Validation'){
@@ -62,9 +62,8 @@ pipeline{
       }
     }
     steps{
-      echo 'I am testing'
-      //sh 'pip install flake8'
-      //sh 'flake8 Challenge/Challenges.py'
+      sh 'pip install flake8'
+      sh 'flake8 Challenge/Challenges.py'
     }
   }
   stage('Build and deploy'){
@@ -75,12 +74,10 @@ pipeline{
       }
     }
     steps{
-      sh 'docker rmi --force 4f1d4ea728cc'
-      /*
+      //sh'docker rmi --force 4f1d4ea728cc'
       sh 'docker build -t pepeloperena/dockertest:testtag .'
       sh 'docker login -u pepeloperena -p Fuerte2019!'
       sh 'docker push pepeloperena/dockertest:testtag'
-      */
       sh 'docker images'
     }
   }
