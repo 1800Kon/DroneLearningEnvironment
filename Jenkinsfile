@@ -76,8 +76,12 @@ pipeline{
       }
     }
     steps{
-
-    sh "docker buildx --help "
+    sh """
+      docker buildx create --name mybuilder,
+      docker buildx use mybuilder,
+      docker buildx inspect --bootstrap,
+      docker buildx build --platform linux/arm/v7 \\-t pepeloperena/dockertest:testtag --push ."
+    """
 
     }
   } 
