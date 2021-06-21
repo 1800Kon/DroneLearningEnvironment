@@ -8,18 +8,9 @@ FROM python:3
 COPY Tello_Library/tello.py .
 COPY requirements.txt ./
 COPY Challenge/Challenges.py .
-
-ENV DOCKER_BUILDKIT=1
-ENV BUILDKIT_PROGRESS=plain
-ENV DOCKER_CLI_EXPERIMENTAL=enabled
-
-ARG BUILDX_URL=https://github.com/docker/buildx/releases/download/v0.4.2/buildx-v0.4.2.linux-amd64
-
-RUN mkdir -p $HOME/.docker/cli-plugins && \
-wget -O $HOME/.docker/cli-plugins/docker-buildx $BUILDX_URL && \
-chmod a+x $HOME/.docker/cli-plugins/docker-buildx
-
-
+export DOCKER_BUILDKIT=1
+docker build --platform=local -o . git://github.com/docker/buildx
+mkdir -p ~/.docker/cli-plugins mv buildx ~/.docker/cli-plugins/docker-buildx/
 #Upadate the image into the latest packages
  
 RUN apt-get update 
