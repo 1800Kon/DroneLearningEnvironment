@@ -73,7 +73,6 @@ pipeline{
       }
     }
     steps{
-      sh 'docker stats'
       sh 'docker build -t pepeloperena/dockertest:latest .'
       sh 'docker login -u pepeloperena -p Fuerte2019!'
       sh 'docker push pepeloperena/dockertest:latest'
