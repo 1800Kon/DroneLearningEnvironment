@@ -75,9 +75,9 @@ pipeline{
     }
     steps{
       //sh'docker rmi --force 4f1d4ea728cc'
-      sh 'docker build -t pepeloperena/dockertest:testtag .'
+      sh 'docker build -t pepeloperena/dockertest .'
       sh 'docker login -u pepeloperena -p Fuerte2019!'
-      sh 'docker push pepeloperena/dockertest:testtag'
+      sh 'docker push pepeloperena/dockertest'
       sh 'docker images'
     }
   }
