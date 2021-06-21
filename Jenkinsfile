@@ -53,20 +53,20 @@ pipeline{
       steps{
         echo 'im passing'
         sh 'pip install -r requirements.txt'
-        sh 'pip install flake8'
-        sh 'flake8 Challenge/Challenges.py'
+
       }
     }
-  /*stage('Validation'){
+  stage('Validation'){
     agent{
       docker{
         image 'python:3.9'
       }
     }
     steps{
-
+        sh 'pip install flake8'
+        sh 'flake8 Challenge/Challenges.py'
     }
-  }*/
+  }
   stage('Build and deploy'){
     agent{
       docker{
