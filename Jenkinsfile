@@ -76,19 +76,20 @@ pipeline{
       }
     }
     steps{
-    sh """
+    /*
+        sh """
       docker buildx install
       docker buildx create --name mybuilder,
       docker buildx use mybuilder,
       docker buildx inspect --bootstrap,
       docker buildx build --platform linux/arm/v7 \\-t pepeloperena/dockertest:testtag --push ."
     """
-      //sh 'docker image rm pepeloperena/dockertest:latest'
-      //sh'docker rmi --force 68486105c9ed'
-      //sh 'docker build -t pepeloperena/dockertest:maybenewtag .'
-     // sh 'docker login -u pepeloperena -p Fuerte2019!'
-     // sh 'docker push pepeloperena/dockertest'
-     // sh 'docker images'
+    */
+
+      sh 'docker build -t pepeloperena/dockertest:maybenewtag .'
+      sh 'docker login -u pepeloperena -p Fuerte2019!'
+      sh 'docker push pepeloperena/dockertest'
+      sh 'docker images'
 
     }
   } 
