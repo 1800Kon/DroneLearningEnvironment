@@ -77,7 +77,18 @@ pipeline{
     }
     steps{
     sh """
-        docker buildx install
+      set dsadsa-e,
+      echo '{\"experimental\":true}' | sudo tee /etc/docker/daemon.json,
+      export DOCKER_CLI_EXPERIMENTAL=enabled,
+      sudo rm -rf /var/lib/apt/lists/*,
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -,
+      sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) edge\",
+      sudo apt-get update,
+      sudo apt-get install -y dpkg,
+      sudo apt-get -y -o Dpkg::Options::=\"--force-confnew\" install docker-ce,
+      mkdir -vp ~/.docker/cli-plugins/,
+        curl --silent -L \"https://github.com/docker/buildx/releases/download/v0.5.1/buildx-v0.5.1.linux-amd64\" > ~/.docker/cli-plugins/docker-buildx,
+      chmod a+x ~/.docker/cli-plugins/docker-buildx
       docker buildx create --name mybuilder,
       docker buildx use mybuilder,
       docker buildx inspect --bootstrap,
