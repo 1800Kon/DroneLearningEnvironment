@@ -9,7 +9,7 @@ COPY Tello_Library/tello.py .
 COPY requirements.txt ./
 COPY Challenge/Challenges.py .
 #Upadate the image into the latest packages
-export DOCKER_CLI_EXPERIMENTAL=enabled/
+RUN apt install qemu binfmt-support qemu-user-static
 RUN apt-get update 
 RUN apt-get install ffmpeg libsm6 libxext6  -y 
 RUN pip install djitellopy 
