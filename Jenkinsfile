@@ -75,12 +75,10 @@ pipeline{
       }
     }
     steps{
-      sh 'docker images'
-      /*
-      sh 'docker build -t pepeloperena/dockertest:latest .'
+      sh 'docker build -t pepeloperena/dockertest:testtag .'
       sh 'docker login -u pepeloperena -p Fuerte2019!'
-      sh 'docker push pepeloperena/dockertest:latest'
-      */
+      sh 'docker push pepeloperena/dockertest:testtag'
+      sh 'docker images'
     }
   }
  }
