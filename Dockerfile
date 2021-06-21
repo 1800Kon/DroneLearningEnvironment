@@ -9,7 +9,6 @@ COPY Tello_Library/tello.py .
 COPY requirements.txt ./
 COPY Challenge/Challenges.py .
 #Upadate the image into the latest packages
-RUN echo 'alias docker buildx install'
 RUN apt-get update 
 RUN apt-get install ffmpeg libsm6 libxext6  -y 
 RUN pip install djitellopy 
