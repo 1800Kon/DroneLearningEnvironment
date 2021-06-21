@@ -8,11 +8,8 @@ FROM python:3
 COPY Tello_Library/tello.py .
 COPY requirements.txt ./
 COPY Challenge/Challenges.py .
-export DOCKER_BUILDKIT=1
-docker build --platform=local -o . git://github.com/docker/buildx
-mkdir -p ~/.docker/cli-plugins mv buildx ~/.docker/cli-plugins/docker-buildx/
 #Upadate the image into the latest packages
- 
+export DOCKER_CLI_EXPERIMENTAL=enabled/
 RUN apt-get update 
 RUN apt-get install ffmpeg libsm6 libxext6  -y 
 RUN pip install djitellopy 
