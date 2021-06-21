@@ -39,9 +39,9 @@
 
 pipeline{
   agent none
-  environment{
-    DOCKERHUB_CREDENTIALS = credentials('pepeloperena-dockerhub')
-  }
+  //environment{
+    //DOCKERHUB_CREDENTIALS = credentials('pepeloperena-dockerhub')
+  //}
   stages{
     stage('Initialize build'){
       agent{
