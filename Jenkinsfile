@@ -76,7 +76,7 @@ pipeline{
       }
     }
     steps{
-      sh 'docker image rm pepeloperena/dockertest:latest'
+      //sh 'docker image rm pepeloperena/dockertest:latest'
       //sh'docker rmi --force 68486105c9ed'
       sh 'docker build -t pepeloperena/dockertest .'
       sh 'docker login -u pepeloperena -p Fuerte2019!'
