@@ -77,12 +77,10 @@ pipeline{
     }
     steps{
 
-    sh """
-      docker buildx create --name mybuilder,
-      docker buildx use mybuilder,
-      docker buildx inspect --bootstrap,
-      docker buildx build --platform linux/arm/v7 \\-t pepeloperena/dockertest:testtag --push ."
-    """
+      sh 'docker build -t pepeloperena/dockertest:maybenewtag .'
+      sh 'docker login -u pepeloperena -p Fuerte2019!'
+      sh 'docker push pepeloperena/dockertest'
+      sh 'docker images'
 
     }
   } 
