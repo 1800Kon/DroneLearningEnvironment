@@ -11,9 +11,9 @@ COPY Challenge/Challenges.py .
 
 #Upadate the image into the latest packages
  
-RUN apt-get update --no-cache-dir
-RUN apt-get install ffmpeg libsm6 libxext6  -y --no-cache-dir
-RUN pip install djitellopy --no-cache-dir
+RUN apt-get update 
+RUN apt-get install ffmpeg libsm6 libxext6  -y 
+RUN pip install djitellopy 
 #RUN pip install -r requirements.txt && apt-get update && pip install djitellopy && pip install opencv-python --no-cache-dir
 #CMD to run the docker container
 CMD [ "python","Challenges.py"]
