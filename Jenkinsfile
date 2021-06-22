@@ -72,7 +72,7 @@ pipeline{
   agent{
     docker{
         image "julieio/buildx:test"
-        args '-v var/jenkins_home/workspace/Drone-learning-environment:var/jenkins_home/workspace/Drone-learning-environment'
+        args '-v /var/jenkins_home/workspace/Drone-learning-environment:/var/jenkins_home/workspace/Drone-learning-environment'
     }
   }
   steps
