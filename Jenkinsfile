@@ -71,12 +71,13 @@ pipeline{
   {
   agent{
     docker{
-        image "julieio/buildx:test"
+        image "docker"
         args '-u root:root -p 3000:3000 --privileged -v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
   steps
   {
+        sh 'docker pull julieio/buildx:test'
         sh "docker buildx build --platform linux/arm/v7 \\-t pepeloperena/dockertest:testtag --push ."
   }
   }
