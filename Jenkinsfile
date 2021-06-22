@@ -76,22 +76,10 @@ pipeline{
       }
     }
     steps{
-    /*
         sh """
       docker buildx install
-      docker buildx create --name mybuilder,
-      docker buildx use mybuilder,
-      docker buildx inspect --bootstrap,
       docker buildx build --platform linux/arm/v7 \\-t pepeloperena/dockertest:testtag --push ."
-    """
-    */
-     sh 'docker build -t pepeloperena/dockertest:latest --build-arg ARCH=arm32v7/ .'
-     sh 'docker login -u pepeloperena -p Fuerte2019!'
-     sh 'docker push pepeloperena/dockertest:latest'
-     sh 'docker manifest create \
-        --amend pepeloperena/dockertest:latest'
-     sh 'docker manifest push pepeloperena/dockertest:latest'
-
+          """
     }
   } 
  }
