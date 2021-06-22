@@ -87,9 +87,9 @@ pipeline{
     */
      sh 'docker build -t pepeloperena/dockertest:latest --build-arg ARCH=arm32v7/ .'
      sh 'docker login -u pepeloperena -p Fuerte2019!'
-     sh 'push pepeloperena/dockertest:latest'
-     sh 'docker manifest create pepeloperena/dockertest:latest'
-     sh 'docker manifest push pepeloperena/dockertest:latest'
+     sh 'docker push pepeloperena/dockertest:latest'
+    // sh 'docker manifest create pepeloperena/dockertest:latest'
+  //   sh 'docker manifest push pepeloperena/dockertest:latest'
 
     }
   } 
