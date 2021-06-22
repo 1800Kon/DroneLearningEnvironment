@@ -46,7 +46,7 @@ pipeline{
     stage('Initialize build'){
       agent{
       docker{
-        image 'python:3.9.5-buster'
+        image 'python:3.9'
         args '-v /root/.m2:/root/.m2' //cache the image.
         }
       }
@@ -59,7 +59,7 @@ pipeline{
   stage('Validation'){
     agent{
       docker{
-        image 'python:3.9.5-buster'
+        image 'python:3.9'
       }
     }
     steps{
@@ -85,11 +85,11 @@ pipeline{
       docker buildx build --platform linux/arm/v7 \\-t pepeloperena/dockertest:testtag --push ."
     """
     */
-
-      sh 'docker build -t pepeloperena/dockertest:latest .'
-      sh 'docker login -u pepeloperena -p Fuerte2019!'
-      sh 'docker push pepeloperena/dockertest:latest'
-      sh 'docker images'
+     sh 'docker build -t pepeloperena/dockertest:latest --build-arg ARCH=arm32v7/ .'
+     sh 'docker login -u pepeloperena -p Fuerte2019!'
+     sh 'push pepeloperena/dockertest:latest'
+     sh 'docker manifest create pepeloperena/dockertest:latest'
+     sh 'docker manifest push pepeloperena/dockertest:latest'
 
     }
   } 
