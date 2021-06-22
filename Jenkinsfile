@@ -46,7 +46,7 @@ pipeline{
     stage('Initialize build'){
       agent{
       docker{
-        image 'python:3.9'
+        image 'python:3.9.5-buster'
         args '-v /root/.m2:/root/.m2' //cache the image.
         }
       }
@@ -59,7 +59,7 @@ pipeline{
   stage('Validation'){
     agent{
       docker{
-        image 'python:3.9'
+        image 'python:3.9.5-buster'
       }
     }
     steps{
