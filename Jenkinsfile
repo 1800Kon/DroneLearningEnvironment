@@ -67,20 +67,44 @@ pipeline{
         sh 'flake8 Challenge/Challenges.py'
     }
   }
+  stage("buildx")
+  {
+  agent{
+    docker{
+        image "julieio/buildx:test"
+        args '-v var/jenkins_home/workspace/Drone-learning-environment:var/jenkins_home/workspace/Drone-learning-environment'
+    }
+  }
+  steps
+  {
+        sh "docker buildx build --platform linux/arm/v7 \\-t pepeloperena/dockertest:testtag --push ."
+  }
+  }
   stage('Build and deploy'){
     agent{
       docker{
         image 'docker'
-        args '-u root:root -p 3000:3000 --privileged -v /var/run/docker.sock:/var/run/docker.sock'
-        //args '-v /root/.m2:/root/.m2' //cache the image.
+        args '-u root:root -p 3000:3000 --privileged -v var/jenkins_home/workspace/Drone-learning-environment:var/jenkins_home/workspace/Drone-learning-environment -v /var/run/docker.sock:/var/run/docker.sock'
+
       }
     }
     steps{
+
+    /*
         sh """
       docker buildx install
+      docker buildx create --name mybuilder,
+      docker buildx use mybuilder,
+      docker buildx inspect --bootstrap,
       docker buildx build --platform linux/arm/v7 \\-t pepeloperena/dockertest:testtag --push ."
-          """
+    """
+    */
+      sh 'docker build -t pepeloperena/dockertest:latest .'
+      sh 'docker login -u pepeloperena -p Fuerte2019!'
+      sh 'docker push pepeloperena/dockertest:latest'
+      sh 'docker images'
+
     }
-  } 
+  }
  }
 }
