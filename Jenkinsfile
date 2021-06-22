@@ -86,7 +86,7 @@ pipeline{
     """
     */
 
-      sh 'docker build -t pepeloperena/dockertest:maybenewtag .'
+      sh 'docker build -t pepeloperena/dockertest .'
       sh 'docker login -u pepeloperena -p Fuerte2019!'
       sh 'docker push pepeloperena/dockertest'
       sh 'docker images'
