@@ -3,7 +3,7 @@
 
 #We first need to add the image we want to use for our different docker images. In this case, pyhton 3.9.0
 
-FROM python:3
+FROM python:3.8.10-buster
 
 COPY Tello_Library/tello.py .
 COPY requirements.txt ./
