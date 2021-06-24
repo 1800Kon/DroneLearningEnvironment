@@ -27,7 +27,7 @@ This section provides a step-by-step guide for setting up your development envir
 
 Before you can start coding you will need an integrated development environment (**IDE**) and we recommend PyCharm for the upcoming challenges.
 
-https://www.jetbrains.com/pycharm/download/#section=windows
+ [Download Pycharm](https://www.jetbrains.com/pycharm/download/#section=windows )
 
 #### Install DJITelloPy library
 
