@@ -12,8 +12,8 @@ import cv2
 whT = 320
 width = 720
 height = 720
-debug_enabled = False
-webcam_mode = False
+debug_enabled = True
+webcam_mode = True
 minConfidence = 0.5
 nms_threshold = 0.3
 modelConfiguration = 'yolov3-320.cfg'
@@ -48,20 +48,20 @@ net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 def checkCenter(x, y, w, h):
     global fullCenter, centerX, centerY
     if (x + (w / 2)) < 250:
-        drone.rotate_counter_clockwise(100)
+        # drone.rotate_counter_clockwise(100)
         centerX = False
     if (x + (w / 2)) > 450:
-        drone.rotate_clockwise(100)
+        # drone.rotate_clockwise(100)
         centerX = False
 
     if ((x + (w / 2)) < 450) and ((x + (w / 2)) > 250):
         centerX = True
 
     if (y + (h / 2)) < 200:
-        drone.move_up(20)
+        # drone.move_up(20)
         centerY = False
     if (y + (h / 2)) > 300:
-        drone.move_down(20)
+        # drone.move_down(20)
         centerY = False
 
     if ((y + (h / 2)) > 200) and ((y + (h / 2)) < 300):
