@@ -27,15 +27,15 @@ This section provides a step-by-step guide for setting up your development envir
 
 Before you can start coding you will need an integrated development environment (**IDE**) and we recommend PyCharm for the upcoming challenges.
 
-https://www.jetbrains.com/pycharm/download/#section=windows
+ [Download Pycharm](https://www.jetbrains.com/pycharm/download/#section=windows )
 
 #### Install DJITelloPy library
 
-First open a **New Project** in PyCharm.
+First open a **New Project** in **PyCharm**.
 
 ![](https://i.imgur.com/sBKaoad.png)
 
-Then choose **Pure Python** and hit **Create**
+Then choose **Pure Python** and hit **Create**.
 
 ![](https://i.imgur.com/QvyQl4r.png)
 
@@ -47,15 +47,87 @@ Search for **djitellopy** and **Install Package**.
 
 ![](https://i.imgur.com/EbiS1MR.png)
 
-After that type on top **from djitellopy import tello** to import the library.
+After that type this on top to import the library.
+
+```python
+from djitellopy import tello
+```
+
+
+
+#### (Optional) Install Visual Studio Code.
+
+If you do not have access to PyCharm, Visual Studio Code is also our recommended Editor.
+
+1. Install [VS Code](https://code.visualstudio.com/).
+
+2. Next, install the [Python extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-python.python) from the Visual Studio Marketplace. For additional details on installing extensions, see [Extension Marketplace](https://code.visualstudio.com/docs/editor/extension-marketplace). The Python extension is named **Python** and it's published by Microsoft.
+
+   ![https://code.visualstudio.com/assets/docs/python/tutorial/python-extension-marketplace.png](https://code.visualstudio.com/assets/docs/python/tutorial/python-extension-marketplace.png)
+
+   3. Install a Python interpreter[#](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter).
+
+   Along with the Python extension, you need to install a Python interpreter. Which interpreter you use is dependent on your specific needs, but some guidance is provided below.
+
+   ### Windows[#](https://code.visualstudio.com/docs/python/python-tutorial#_windows).
+
+   Install [Python from python.org](https://www.python.org/downloads/). You can typically use the **Download Python** button that appears first on the page to download the latest version.
+
+   > **Note**: If you don't have admin access, an additional option for installing Python on Windows is to use the Microsoft Store. The Microsoft Store provides installs of [Python 3.7](https://www.microsoft.com/en-us/p/python-37/9nj46sx7x90p), [Python 3.8](https://www.microsoft.com/en-us/p/python-38/9mssztt1n39l), and [Python 3.9](https://www.microsoft.com/en-au/p/python-39/9p7qfqmjrfp7). Be aware that you might have compatibility issues with some packages using this method.
+
+   For additional information about using Python on Windows, see [Using Python on Windows at Python.org](https://docs.python.org/3.9/using/windows.html)
+
+   4. Verify the Python installation[#](https://code.visualstudio.com/docs/python/python-tutorial#_verify-the-python-installation)
+
+      To verify that you've installed Python successfully on your machine, run one of the following commands (depending on your operating system):
+
+      - Linux/macOS: open a Terminal Window and type the following command:
+
+        ```
+        python3 --version
+        ```
+
+      - Windows: open a command prompt and run the following command:
+
+        ```
+        py -3 --version
+        ```
+
+      If the installation was successful, the output window should show the version of Python that you installed.
+
+   5. Create a Python file. Go to **File** > **New File**.
+
+      ![](https://i.imgur.com/2Jh9whn.png)
+
+   6. **Click** on **Select a language** and type **Python**.
+
+   7. Use the Command Palette to run **Terminal: Create New Integrated Terminal** (Ctrl+Shift+`).
+
+   8. **Type** this in the just opened terminal.
+
+      ```python
+      python -m ensurepip
+      ```
+
+      and then.
+
+      ```python
+      pip install djitellopy
+      ```
+
+   9. After that type on **top of the python file created** to import the library.
+
+      ```python
+      from djitellopy import tello
+      ```
 
 ### Connect to DJI Tello drone
 
 1. Turn on the drone with the button on the side. 
 
-2. Turn on wifi on your PC.
+2. Turn on Wi-Fi on your PC.
 
-3. Search for wifi name starts with **TELLO**.
+3. Search for Wi-Fi name starts with **TELLO**.
 
 4. Type these inside your file to connect to the drone and receives its battery from PyCharm.
 
@@ -116,6 +188,12 @@ Come to this section to further learn basics in Python and how to use the librar
 ```python
 def my_function():
   print("Hello from a function")
+```
+
+###### **Tip: run a function (out side any parent function)**
+
+```python
+my_function()
 ```
 
 **Python Syntax**
@@ -194,6 +272,3 @@ def challenge1():
 ```
 
 For this example you can can **CTRL + Left Mouse Click** on `Tello()`, `connect()` or `get_battery()` and similarly for all functions you might use.
-
-# MORE WILL BE UPDATED
-
